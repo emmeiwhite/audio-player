@@ -1,3 +1,6 @@
+#pause-icon,#play-icon{
+  cursor: pointer;
+}
 #pause-icon{
-  display:'none';
+  display:none;
 }
