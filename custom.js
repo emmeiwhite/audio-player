@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
   playIcon.addEventListener('click', playAndPauseHandler);
   pauseIcon.addEventListener('click', playAndPauseHandler);
+  /** --- Volume --- */
   volume.addEventListener('change', volumeHandler);
+
+  /** --- Till The End --- */
+  audio.addEventListener('ended', function (e) {
+
+    pauseIcon.style.display = 'none';
+    playIcon.style.display = 'block';
+  });
 
 });
