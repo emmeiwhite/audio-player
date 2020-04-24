@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
   const playIcon = document.getElementById("play-icon");
   const pauseIcon = document.getElementById("pause-icon");
   const volume = document.querySelector('.volume');
+  const time = document.querySelector('.time-duration');
 
   const audio = new Audio('./mpthreetest.mp3');
-
 
   /** --- play pause Handler --- */
   function playAndPauseHandler(e) {
@@ -36,9 +36,23 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
   /** --- Till The End --- */
   audio.addEventListener('ended', function (e) {
-
     pauseIcon.style.display = 'none';
     playIcon.style.display = 'block';
   });
 
+  /** --- play and pause are two events that plays a key role --- */
+  let timeInterval;
+  audio.addEventListener('play', function (e) {
+    timeInterval = setInterval(() => {
+      time.textContent = `${audio.currentTime} / ${audio.duration}`;
+      console.log("i am still being called");
+    });
+  });
+
+  /** --- time duration that the audio has played so far --- */
+
+  audio.addEventListener('pause', function (e) {
+    // Pause the current time duration
+    clearInterval(timeInterval);
+  });
 });
