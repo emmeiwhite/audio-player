@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   const pauseIcon = document.getElementById("pause-icon");
   const volume = document.querySelector('.volume');
   const time = document.querySelector('.time-duration');
+  const loop = document.querySelector('.loop');
 
   const audio = new Audio('./mpthreetest.mp3');
 
@@ -54,5 +55,21 @@ document.addEventListener('DOMContentLoaded', function (e) {
   audio.addEventListener('pause', function (e) {
     // Pause the current time duration
     clearInterval(timeInterval);
+  });
+
+
+  /** --- loop button event handler --- */
+
+  loop.addEventListener('click', function (e) {
+    if (audio.loop) { // By default audio.loop=false
+      audio.loop = false;
+      loop.textContent = 'OFF';
+
+    } else {
+      // This block will be executed initially. Since this is the false block execution
+      audio.loop = true;
+      loop.textContent = 'ON';
+
+    }
   });
 });

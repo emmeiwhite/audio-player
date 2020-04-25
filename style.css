@@ -6,3 +6,11 @@
   display: none;
 }
 
+.loop{
+  padding:0.3rem 1rem;
+  border:1px solid #999;
+  border-radius: 1rem;
+  display: inline-block;
+  color:#777;
+  cursor: pointer;
+}
