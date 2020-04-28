@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   const volume = document.querySelector('.volume');
   const time = document.querySelector('.time-duration');
   const loop = document.querySelector('.loop');
+  const progressSlider = document.querySelector('.controls-progress-slider');
 
   const audio = new Audio('./mpthreetest.mp3');
 
@@ -47,6 +48,17 @@ document.addEventListener('DOMContentLoaded', function (e) {
     timeInterval = setInterval(() => {
       time.textContent = `${audio.currentTime} / ${audio.duration}`;
       console.log("i am still being called");
+
+      const sliderProgress = (audio.currentTime / audio.duration);
+
+      console.log(sliderProgress);
+
+      progressSlider.style.width = sliderProgress * 800 + "px";
+
+      if (sliderProgress == 1) {
+        progressSlider.style.width = "0px";
+        time.textContent = `00 / ${audio.duration}`;
+      }
     });
   });
 
@@ -69,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
       // This block will be executed initially. Since this is the false block execution
       audio.loop = true;
       loop.textContent = 'ON';
-
     }
   });
 });

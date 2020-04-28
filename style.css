@@ -14,3 +14,18 @@
   color:#777;
   cursor: pointer;
 }
+
+/* --- Controls Div --- */
+
+.controls-progress-div{
+  width:800px;
+  height:0.5rem;
+  background:#cecece;
+  margin:0.5rem 0;
+}
+
+.controls-progress-slider{
+  width:0;
+  background:#000;
+  height:100%;
+}
