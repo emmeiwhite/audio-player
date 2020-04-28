@@ -43,6 +43,20 @@ document.addEventListener('DOMContentLoaded', function (e) {
   });
 
   /** --- play and pause are two events that plays a key role --- */
+
+
+  /**  --- canplaythrough is an event listener invoked once the audio starts to load ...
+   *   So if want to aviod NaN which sometimes comes initially when we use audio.duration.
+   *  
+   * 
+  */
+
+  console.log('Audio Not loaded yet ');
+  audio.addEventListener('canplaythrough', function (e) {
+    time.textContent = `${audio.currentTime} / ${audio.duration}`;
+  });
+
+
   let timeInterval;
   audio.addEventListener('play', function (e) {
     timeInterval = setInterval(() => {
