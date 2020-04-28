@@ -37,11 +37,29 @@
   width:800px;
   height:0.5rem;
   background:#cecece;
-  margin:0.5rem 0;
+  margin:1rem 0;
 }
 
 .controls-progress-slider{
   width:0;
   background:#000;
   height:100%;
+  margin-bottom:1rem;
+}
+
+.forwardStream,.backwardStream{
+  border:1px solid #ccc;
+  padding:0.5rem 1rem;
+  border-radius: 1rem;
+  color:#777;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.streams{
+  flex:1;
+  margin-left:auto;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
 }

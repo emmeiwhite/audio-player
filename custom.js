@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
   const time = document.querySelector('.time-duration');
   const loop = document.querySelector('.loop');
   const progressSlider = document.querySelector('.controls-progress-slider');
+  const forward = document.querySelector('.forwardStream');
+  const backward = document.querySelector('.backwardStream');
 
   const audio = new Audio('./mpthreetest.mp3');
 
@@ -51,28 +53,62 @@ document.addEventListener('DOMContentLoaded', function (e) {
    * 
   */
 
-  console.log('Audio Not loaded yet ');
-  audio.addEventListener('canplaythrough', function (e) {
-    time.textContent = `${audio.currentTime} / ${audio.duration}`;
+
+
+  audio.addEventListener('loadstart', function (e) {
+    console.log("loadstart --- loadstart --- loadstart");
   });
 
+  audio.addEventListener('durationchange', function (e) {
+    console.log("durationchange --- durationchange --- durationchange");
+  });
+
+  audio.addEventListener('loadedmetadata', function (e) {
+    console.log("loadedmetadata --- loadedmetadata --- loadedmetadata");
+  });
+
+  audio.addEventListener('loadeddata', function (e) {
+    console.log("loadeddata --- loadeddata --- loadeddata");
+  });
+
+  audio.addEventListener('progress', function (e) {
+    console.log("progress --- progress --- progress");
+    time.textContent = `${audio.currentTime.toFixed(2)} / ${audio.duration.toFixed(2)}`;
+  });
+
+  audio.addEventListener('canplay', function (e) {
+    console.log("canplay --- canplay --- canplay");
+    time.textContent = `${audio.currentTime.toFixed(2)} / ${audio.duration.toFixed(2)}`;
+  });
+
+  audio.addEventListener('canplaythrough', function (e) {
+    console.log('canplaythrough')
+    time.textContent = `${audio.currentTime.toFixed(2)} / ${audio.duration.toFixed(2)}`;
+  });
 
   let timeInterval;
   audio.addEventListener('play', function (e) {
     timeInterval = setInterval(() => {
-      time.textContent = `${audio.currentTime} / ${audio.duration}`;
-      console.log("i am still being called");
+      time.textContent = `${audio.currentTime.toFixed(2)} / ${audio.duration.toFixed(2)}`;
 
-      const sliderProgress = (audio.currentTime / audio.duration);
+      const sliderProgress = (audio.currentTime.toFixed(2) / audio.duration.toFixed(2));
 
-      console.log(sliderProgress);
 
       progressSlider.style.width = sliderProgress * 800 + "px";
 
       if (sliderProgress == 1) {
         progressSlider.style.width = "0px";
-        time.textContent = `00 / ${audio.duration}`;
+        time.textContent = `00 / ${audio.duration.toFixed(2)}`;
       }
+
+      /** --- forward and backward --- */
+      forward.addEventListener('click', function (e) {
+        audio.currentTime += audio.currentTime;
+      });
+
+      backward.addEventListener('click', function (e) {
+        audio.currentTime += audio.currentTime;
+      });
     });
   });
 
